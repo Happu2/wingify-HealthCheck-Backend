@@ -266,6 +266,7 @@ python-dotenv==1.0.0
 pydantic==2.0.0
 google-generativeai==0.5.0
 ```
+or remove versions of dependencies or  you can download the imported libraries while debugging
 
 ## 🔧 Development
 

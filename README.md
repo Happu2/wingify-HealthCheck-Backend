@@ -285,6 +285,76 @@ black .
 2. Create corresponding task in `task.py`
 3. Add to crew configuration in `main.py`
 
+
+ ### Primary Output Locations:
+1. API Response (JSON Format)
+When you make a request to the API, you'll get a JSON response like this:
+bash# Using cURL
+curl -X POST "http://localhost:8000/analyze" \
+  -F "file=@blood_test_report.pdf" \
+  -F "query=Analyze my cholesterol levels"
+Output will be:
+json{
+  "status": "success",
+  "query": "Analyze my cholesterol levels",
+  "analysis_type": "comprehensive",
+  "analysis": "Your detailed medical analysis appears here...",
+  "file_processed": "blood_test_report.pdf",
+  "disclaimer": "This analysis is for educational purposes only..."
+}
+2. FastAPI Interactive Documentation
+Visit: http://localhost:8000/docs
+
+Built-in Swagger UI interface
+Test API endpoints directly in browser
+See responses in real-time
+Upload files and view formatted output
+
+3. Terminal/Console Output
+When running the server:
+bashpython main.py
+You'll see:
+
+Server startup logs
+Request processing status
+Agent interactions (if verbose mode enabled)
+Error messages (if any)
+
+4. Python Client Output
+pythonimport requests
+
+response = requests.post("http://localhost:8000/analyze", 
+                        files={"file": open("test.pdf", "rb")})
+
+# Output here
+print(response.json()["analysis"])
+5. Web Browser Testing
+You can also test via browser at:
+
+http://localhost:8000/ - Health check
+http://localhost:8000/docs - Interactive API docs
+http://localhost:8000/health - System status
+
+🔍 What the Output Contains:
+The analysis output typically includes:
+
+Medical Interpretation: Blood test results analysis
+Nutritional Recommendations: Diet suggestions based on markers
+Exercise Planning: Safe workout recommendations
+Risk Assessments: Health insights and warnings
+Medical Disclaimers: Important safety information
+
+📱 Testing the Output:
+Try this simple test:
+bash# Start the server
+python main.py
+
+# In another terminal, test with a sample PDF
+curl -X POST "http://localhost:8000/analyze" \
+  -F "file=@sample_blood_test.pdf" \
+  -F "query=Give me a comprehensive health analysis"
+The detailed medical analysis will appear in the JSON response under the "analysis" field!RetryClaude does not have the ability to run the code it generates yet.Claude can make mistakes. Please double-check responses.
+
 ## 📝 License
 
 This project is for educational purposes. Medical analysis should always be verified by qualified healthcare professionals.
@@ -313,3 +383,7 @@ For issues and questions:
 ## 🏷️ Tags
 
 `medical-analysis` `crewai` `fastapi` `blood-test` `ai-agents` `healthcare` `pdf-analysis` `python` `machine-learning`
+
+
+
+
